@@ -4,23 +4,27 @@ CREATE TABLE sales_data_cleaned LIKE sales_data_raw;
 -- Step 2: Insert cleaned data
 INSERT INTO sales_data_cleaned
 SELECT
-    Order_ID,
+
+	CASE
+		WHEN Order_ID IS NULL OR Order_ID = ' ' THEN 'Unknown'
+		ELSE TRIM(Order_ID)
+	END as Order_ID,
 
     -- Fix Date Format
     CASE
-        WHEN Order_Date REGEXP '^[0-9]{4}-[0-9]{2}-[0-9]{2}$' THEN STR_TO_DATE(Order_Date, '%Y-%m-%d')
-        WHEN Order_Date REGEXP '^[0-9]{2}/[0-9]{2}/[0-9]{4}$' THEN STR_TO_DATE(Order_Date, '%d/%m/%Y')
-        WHEN Order_Date REGEXP '^[0-9]{2}-[0-9]{2}-[0-9]{4}$' THEN STR_TO_DATE(Order_Date, '%m-%d-%Y')
+        WHEN Order_Date REGEXP '^[0-9]{4}-[0-9]{2}-[0-9]{2}$' 	 THEN STR_TO_DATE(Order_Date, '%Y-%m-%d')
+        WHEN Order_Date REGEXP '^[0-9]{2}/[0-9]{2}/[0-9]{4}$' 	 THEN STR_TO_DATE(Order_Date, '%d/%m/%Y')
+        WHEN Order_Date REGEXP '^[0-9]{2}-[0-9]{2}-[0-9]{4}$' 	 THEN STR_TO_DATE(Order_Date, '%m-%d-%Y')
         WHEN Order_Date REGEXP '^[0-9]{2}-[A-Za-z]{3}-[0-9]{4}$' THEN STR_TO_DATE(Order_Date, '%d-%b-%Y')
         ELSE NULL
     END AS order_date,
 
     -- Standardize Region
     CASE
-        WHEN TRIM(LOWER(Region)) = 'north' THEN 'North'
-        WHEN TRIM(LOWER(Region)) = 'south' THEN 'South'
-        WHEN TRIM(LOWER(Region)) = 'east'  THEN 'East'
-        WHEN TRIM(LOWER(Region)) = 'west'  THEN 'West'
+        WHEN TRIM(LOWER(Region)) = 'north' 		 THEN 'North'
+        WHEN TRIM(LOWER(Region)) = 'south' 		 THEN 'South'
+        WHEN TRIM(LOWER(Region)) = 'east'  		 THEN 'East'
+        WHEN TRIM(LOWER(Region)) = 'west'  		 THEN 'West'
         WHEN Region IS NULL OR TRIM(Region) = '' THEN 'Unknown'
     END AS Region,
 
