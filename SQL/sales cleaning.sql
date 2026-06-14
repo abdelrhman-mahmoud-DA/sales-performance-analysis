@@ -4,7 +4,7 @@ CREATE TABLE sales_data_cleaned LIKE sales_data_raw;
 -- Step 2: Insert cleaned data
 INSERT INTO sales_data_cleaned
 SELECT
-
+-- Fixing the Order_ID
 	CASE
 		WHEN Order_ID IS NULL OR Order_ID = ' ' THEN 'Unknown'
 		ELSE TRIM(Order_ID)
