@@ -145,7 +145,7 @@ The South region processes the highest order volume at 108 orders yet achieves o
 | Laptop | 65 | $1,202,586 | 29.48% | 9.23% | 12.37% |
 | Monitor | 62 | $1,008,015 | 26.67% | 11.29% | 15.45% |
 | Keyboard | 63 | $951,101 | 22.79% | 17.46% | 14.14% |
-| Mouse | — | $615,318 | 20.49% | 17.65% | 13.71% |
+| Mouse | 43 | $615,318 | 20.49% | 17.65% | 13.71% |
 | Headset | 56 | $65,999 | 11.90% | 28.57% | 16.25% |
 
 Headset is the least profitable product with an **11.9% margin and 28.57% loss rate** — nearly 3x the loss rate of Laptops. Despite generating the lowest revenue at $66K it contributes disproportionately to overall losses. Its above-average discount rate of 16.25% compounds already thin margins, making any discounted Headset order highly likely to result in a loss.
